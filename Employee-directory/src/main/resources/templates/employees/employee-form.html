@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags for responsive design -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS for styling and responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Save Employee</title>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page header -->
+    <h3>Employee Directory</h3>
+    <hr> <!-- Horizontal rule for visual separation -->
+
+    <!-- Form title -->
+    <p class="h4 mb-4">Save Employee</p>
+
+    <!-- Employee save form -->
+    <!-- The form uses Thymeleaf to bind to the Employee model attribute and submit it to the /employees/save endpoint -->
+    <form action="#" th:action="@{/employees/save}"
+          th:object="${employee}" method="POST">
+
+        <!-- Hidden input field for the employee's ID, used for updates -->
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Input field for the employee's first name -->
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 w-25" placeholder="First name">
+
+        <!-- Input field for the employee's last name -->
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 w-25" placeholder="Last name">
+
+        <!-- Input field for the employee's email -->
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 w-25" placeholder="Email">
+
+        <!-- Submit button for the form -->
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr> <!-- Horizontal rule for visual separation -->
+    <!-- Link to navigate back to the employees list page -->
+    <a th:href="@{/employees/list}">Back to Employees List</a>
+
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

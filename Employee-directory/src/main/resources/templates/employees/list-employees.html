@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta tags essential for responsive design and character encoding -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS for styling and responsive design features -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Employee Directory</title>
+</head>
+<body>
+
+<div class="container">
+    <!-- Page header indicating the purpose of the page -->
+    <h3>Employee Directory</h3>
+    <hr> <!-- Visual separator -->
+
+    <!-- Button to navigate to the form for adding a new employee -->
+    <a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
+        Add Employee
+    </a>
+
+    <!-- Table to display the list of employees -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th> <!-- Column for action buttons -->
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- Loop through each employee and display their data in the table -->
+        <tr th:each="tempEmployee : ${employees}">
+
+            <td th:text="${tempEmployee.firstName}">First Name Placeholder</td>
+            <td th:text="${tempEmployee.lastName}">Last Name Placeholder</td>
+            <td th:text="${tempEmployee.email}">Email Placeholder</td>
+
+            <td>
+                <div class="row">
+                    <div class="col-small">
+                        <!-- Form for updating an employee. When submitted, navigates to the update form -->
+                        <form action="#" th:action="@{/employees/showFormForUpdate}" method="POST">
+                            <input type="hidden" name="employeeId" th:value="${tempEmployee.id}" />
+                            <button type="submit" class="btn btn-info btn-sm me-1" style="float:left;">Update</button>
+                        </form>
+
+                        <!-- Form for deleting an employee. Includes a confirmation prompt before submission -->
+                        <form action="#" th:action="@{/employees/delete}" method="POST">
+                            <input type="hidden" name="employeeId" th:value="${tempEmployee.id}" />
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
